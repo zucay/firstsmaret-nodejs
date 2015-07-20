@@ -3,15 +3,16 @@
 <title>chat</title>
 <script src="/socket.io/socket.io.js"></script>
 <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-<form><input></form><div></div>
+<form class="message-form"><input></form>
+<div class="message-history"></div>
 <script>
 var socket = io();
-$('form').submit(function() {
-  socket.emit('msg', $('input').val());
-  $('input').val('');
+$('.message-form').submit(function() {
+  socket.emit('msg', $('.message-form input').val());
+  $('.message-form input').val('');
   return false;
 });
 socket.on('msg', function(data) {
-  $('div').prepend(data + '<br>');
+  $('.message-history').prepend(data + '<br>');
 });
 </script>
