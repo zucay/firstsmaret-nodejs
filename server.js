@@ -1,7 +1,7 @@
 "use strict";
 
 //settings--start
-var listenPort = 3000;
+var listenPort = process.env.PORT || 3000;
 //settings--end
 
 var html = require('fs').readFileSync('index.html');
