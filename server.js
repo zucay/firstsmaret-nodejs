@@ -1,7 +1,7 @@
 "use strict";
 
 //settings--start
-var listenPort = 3000;
+var listenPort = process.env.PORT || 3000;
 //settings--end
 
 var html = require('fs').readFileSync('index.html');
@@ -13,7 +13,12 @@ var http = require('http').createServer(function(req, res) {
 var io = require('socket.io')(http);
 http.listen(listenPort);
 io.on('connection', function(socket) {
-  socket.on('msg', function(data) {
-    io.emit('msg', data);
+  socket.on('joinRoom', function(roomName) {
+    var room = socket.join(roomName);
+    console.log('joinned room: ' + roomName);
+    room.on('msg', function(data) {
+      room.emit('msg', data);
+      console.log(data);
+    });
   });
 });
