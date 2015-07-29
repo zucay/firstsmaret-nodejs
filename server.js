@@ -18,6 +18,7 @@ io.on('connection', function(socket) {
     console.log('joinned room: ' + roomName);
     room.on('msg', function(data) {
       room.emit('msg', data);
+      console.log(data);
     });
   });
 });
