@@ -7,8 +7,8 @@
 <div class="message-history"></div>
 <script>
 
-var socket = io.connect('wss://firstsmart-nodejs.herokuapp.com', {
-//var socket = io.connect(null, {
+//var socket = io.connect('wss://firstsmart-nodejs.herokuapp.com', {
+var socket = io.connect(null, {
   transports: ['websocket']
 });
 socket.emit('joinRoom', 'myroom');
